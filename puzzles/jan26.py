@@ -27,7 +27,7 @@ def reverse3(x):
 
 print(reverse3(-128))
 
-# Palindrome Number
+# 🌟🌟 Palindrome Number 🌟🌟
 # Given an integer x, return true if x is palindrome integer.
 
 # Example 1:
@@ -62,7 +62,7 @@ class Solution:
         
         return str(x) == str(x)[::-1]
 
-# Repeated DNA Sequences - LeetCode
+# 🌟🌟 Repeated DNA Sequences - LeetCode 🌟🌟
 # All DNA is composed of a series of nucleotides abbreviated as 'A', 'C', 'G', and 'T', for example: "ACGAATTCCG". 
 # When studying DNA, it is sometimes useful to identify repeated sequences within the DNA.
 # Write a function to find all the 10-letter-long sequences (substrings) that occur more than once in a DNA molecule.
@@ -111,6 +111,22 @@ class Solution:
                 winners.add(sub)
             subsequences.add(sub)
         return [sub for sub in winners]
+
+# 🌟🌟  Maximum Product Subarray 🌟🌟
+# Given an integer array nums, find the contiguous subarray within an array (containing at least one number) which has the largest product.
+
+# Example 1:
+# Input: [2,3,-2,4]
+# Output: 6
+# Explanation: [2,3] has the largest product 6.
+
+# Example 1:
+# Input: [-2,0,-1]
+# Output: 0
+# Explanation: The result cannot be 2, because [-2,-1] is not a subarray.
+
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
 
 
              

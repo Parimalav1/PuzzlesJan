@@ -65,7 +65,6 @@ class Stack:
 
 # FIFO using 2 stacks
 
-
 class MyQueue:
     def __init__(self):
         self.size = 0

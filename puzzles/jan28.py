@@ -34,6 +34,88 @@ class Solution:
 
         return num
 
+# 🌟🌟 Integer to Roman 🌟🌟 
+# Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
+# Given an integer, convert it to a roman numeral.
+
+# /**
+#  * @param {number} num
+#  * @return {string}
+#  */
+var intToRoman = function(num) {
+    let changeableNum = num;
+    let intToRoman = {
+        1000: "M",
+        500: "D",
+        100: "C",
+        50: "L",
+        10: "X",
+        5: "V",
+        1: "I"
+    }
+    let roman = "";
+    let keys = Object.keys(intToRoman);
+    for (i = 0; i < keys.length; i++) {
+        if (changeableNum.toString()[0] == "4") {
+            roman += intToRoman[1 * (10 ** (changeableNum.toString().length - 1))] + intToRoman[5 * (10 ** (changeableNum.toString().length - 1))];
+            changeableNum -= 4 * (10 ** (changeableNum.toString().length - 1));
+        } else if (changeableNum.toString()[0] == "9") {
+            roman += intToRoman[1 * (10 ** (changeableNum.toString().length - 1))] + intToRoman[10 * (10 ** (changeableNum.toString().length - 1))];
+            changeableNum -= 9 * (10 ** (changeableNum.toString().length - 1));
+        } else if (changeableNum - keys[keys.length - i - 1] >= 0) {
+            changeableNum-=keys[keys.length - i - 1];
+            roman+=intToRoman[keys[keys.length - i - 1]];
+            i--;
+        }
+    }
+    return roman;
+};
+
+class Solution:
+    def intToRoman(self, num: int) -> str:
+        d = {
+            "I": 1,
+            "V": 5,
+            "X": 10,
+            "L": 50,
+            "C": 100,
+            "D": 500,
+            "M": 1000
+        }
+        inv_d = {
+            1: "I",
+            5: "V",
+            10: "X",
+            50: "L",
+            100: "C",
+            500: "D",
+            1000: "M"
+        }
+        romanDigits = [1000, 100, 10, 1]
+        fiveDigits = [None, 'D', 'L', 'V']
+        remainder = num
+        i = 0
+        rv = ""
+        while remainder > 0:
+            quotient = remainder // romanDigits[i]
+            remainder = remainder % romanDigits[i]
+            #print('i: ', i, 'q: ', quotient, 'remainder: ', remainder)
+            if quotient <= 3:
+                rv = rv + inv_d[romanDigits[i]] * quotient            
+            elif quotient == 4:
+                rv = rv + inv_d[romanDigits[i]] + fiveDigits[i]
+            elif quotient == 5:
+                rv = rv + fiveDigits[i]
+            elif quotient >= 6 and quotient <= 8:
+                rv = rv + fiveDigits[i] + inv_d[romanDigits[i]] * (quotient - 5)
+            elif quotient == 9:
+                rv = rv + inv_d[romanDigits[i]] + inv_d[romanDigits[i-1]]
+
+            i += 1
+            
+        return rv
+
+
 # 🌟🌟 Search Insert Position 🌟🌟 
 # Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
 # Example 1:
