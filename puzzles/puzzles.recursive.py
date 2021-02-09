@@ -74,7 +74,7 @@ Davis has a number of staircases in his house and he likes to climb each stairca
 he wonders how many ways there are to reach the top of the staircase. Given the respective heights for each of the  staircases in his house, 
 find and print the number of ways he can climb each staircase.
 
-For example, there is  staircase in the house that is  steps high. Davis can step on the following sequences of steps:
+For example, there is 1 staircase in the house that is 5 steps high. Davis can step on the following sequences of steps:
 stepPerms has the following parameter(s):
 n: an integer, the number of stairs 5 in the staircase 1.
 1 1 1 1 1
@@ -136,3 +136,23 @@ def stepPerms3(n):
 # Runtime complexilty
 # O(3^n)
 # with caching/memoization, it is O(n)-linear, space complexity - O(n)
+
+# Solution 3 Loop Fibonacci
+class Solution:
+    def climbStairs(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        if n == 0 or n == 1 or n == 2:
+            return n
+        else:
+            res, step_1, step_2 = 0,1,2
+            for i in range(2, n):
+                res = step_2 + step_1
+                step_1 = step_2
+                step_2 = res
+            return res
+
+# Time: O(n)
+# Space: O(1)
